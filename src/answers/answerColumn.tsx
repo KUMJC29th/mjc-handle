@@ -4,6 +4,14 @@ import { layoutConstant, calcAnswerColumnTileX } from "../common/layoutConstant"
 import { enumerateRange } from "../common/util";
 import { StoreType } from "../common/store";
 import { AnswerStateColumn } from "./answersReducer";
+import styled from "styled-components";
+
+const Container = styled.div`
+    max-width: ${layoutConstant.answerColumnWidth}px;
+    height: auto;
+
+    /*width: min(800px, 100vw);*/
+`;
 
 type AnswerColumnProps = {
     readonly index: number;
@@ -12,12 +20,9 @@ type AnswerColumnProps = {
 const AnswerColumn = ({ index }: AnswerColumnProps) => {
     const answer = useSelector<StoreType, AnswerStateColumn>(state => state.answersReducer.answers[index]);
     return (
-        <div>
+        <Container>
             <svg
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                xmlns="http://www.w3.org/2000/svg"
                 viewBox={layoutConstant.answerCoulumnViewBox}
-                height={layoutConstant.answerColumnHeight}
             >
                 {enumerateRange(0, 14).map(i =>
                     <use
@@ -42,7 +47,7 @@ const AnswerColumn = ({ index }: AnswerColumnProps) => {
                     </g>
                 )}
             </svg>
-        </div>
+        </Container>
     );
 };
 

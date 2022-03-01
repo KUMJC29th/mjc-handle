@@ -6,6 +6,7 @@ import { AnswersAction } from "../answers/answersAction";
 import { StoreType } from "../common/store";
 import { TileColor } from "../common/tileColor";
 import { layoutConstant } from "../common/layoutConstant";
+import useMedia from "use-media";
 
 const calcX = (index: number): number => {
     const i = index % 9;
@@ -18,6 +19,11 @@ const calcY = (index: number): number => {
 
 const TilesContainer = styled.div`
     padding: 5px;
+    max-width: ${layoutConstant.tilePaletteWidth}px;
+
+    @media screen and (max-width: 959px) {
+        max-width: ${layoutConstant.tilePaletteWidth * 1.5}px;
+    }
 `;
 
 const ClickableG = styled.g`
@@ -30,13 +36,15 @@ const TilePalette = () => {
     const answerDispatch = useDispatch<Dispatch<AnswersAction>>();
     const addAnswer = (tile: number) => () => answerDispatch({ type: "addAnswer", payload: { index, tile } });
     const removeAnswer = () => answerDispatch({ type: "removeAnswer", payload: { index } });
+
+    const isWide = useMedia({ minWidth: "960px" });
+
     return (
         <TilesContainer>
             <svg
                 xmlnsXlink="http://www.w3.org/1999/xlink"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox={layoutConstant.tilePaletteViewBox}
-                height={layoutConstant.tilePaletteHeight}
             >
                 {colors.map((col, i) => 
                     <ClickableG

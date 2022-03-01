@@ -3,11 +3,10 @@ const tileHeight = 830;
 const tileHorizontalGap = 25;
 const tileVerticalGap = tileHorizontalGap;
 const winTileHorizontalGap = 5 * tileHorizontalGap;
-const answerColumnTileScale = 12;
-const answerColumnHeight = (tileHeight + 2 * tileVerticalGap) / answerColumnTileScale;
+const answerColumnWidth = 800;
 const answerCoulumnViewBox = `0 0 ${(tileWidth + 2 * tileHorizontalGap) * 14 + winTileHorizontalGap} ${tileHeight + 2 * tileVerticalGap}`;
 const tilePaletteTileScale = 15;
-const tilePaletteHeight = (tileHeight + 2 * tileVerticalGap) * 4 / tilePaletteTileScale;
+const tilePaletteWidth = 400;
 const tilePaletteViewBox = `0 0 ${(tileWidth + 2 * tileHorizontalGap) * 9} ${(tileHeight + 2 * tileVerticalGap) * 4}`;
 const problemInfoTileViewBox = `${-tileWidth / 2} ${-tileHeight / 2} ${tileWidth} ${tileHeight}`;
 const problemInfoTileHeight = tileHeight / tilePaletteTileScale;
@@ -24,9 +23,9 @@ export const layoutConstant = {
     tileHorizontalGap,
     tileVerticalGap,
     winTileHorizontalGap,
-    answerColumnHeight,
+    answerColumnWidth,
     answerCoulumnViewBox,
-    tilePaletteHeight,
+    tilePaletteWidth,
     tilePaletteViewBox,
     problemInfoTileViewBox,
     problemInfoTileHeight,

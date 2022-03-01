@@ -12,9 +12,6 @@ export type ProblemState = {
 };
 
 export function getProblem(number: number): ProblemState {
-    //
-    console.log(`getProblem(${number})`);
-    //
     const i = number % (Math.floor(problemsSource.length / 15));
     const s = problemsSource.substring(15 * i, 15 * i + 14);
     const flags = parseInt(problemsSource[15 * i + 14], 36);

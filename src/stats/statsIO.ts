@@ -6,9 +6,6 @@ const keyStats = "mjc-handle:stats";
 const currentVersion = "1.0";
 
 export function loadStats(): StatsState {
-    //
-    console.log("loadState");
-    //
     if (localStorageIsAvailable() && localStorage.getItem(keyVersion) !== null) {
         const value = localStorage.getItem(keyStats);
         if (value !== null) {
