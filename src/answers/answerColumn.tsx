@@ -9,8 +9,7 @@ import styled from "styled-components";
 const Container = styled.div`
     max-width: ${layoutConstant.answerColumnWidth}px;
     height: auto;
-
-    /*width: min(800px, 100vw);*/
+    margin: 0 auto;
 `;
 
 type AnswerColumnProps = {

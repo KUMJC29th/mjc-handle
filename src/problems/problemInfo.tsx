@@ -8,6 +8,7 @@ import { ProblemState } from "./problemReducer";
 const Conatiner = styled.div`
     height: ${layoutConstant.problemInfoTileHeight}px;
     display: table;
+    margin: 5px auto;
 `;
 
 const ItemContainer = styled.div`
@@ -15,6 +16,11 @@ const ItemContainer = styled.div`
     display: table-cell;
     vertical-align: middle;
     user-select: none;
+`;
+
+const ItemContainerTile = styled(ItemContainer)`
+    width: 5vw;
+    max-width: 40px;
 `;
 
 type ItemContainerPadding = {
@@ -28,32 +34,31 @@ const ProblemInfo = () => {
     const { problemNumber, roundWind, seatWind, isBySelfDraw } = useSelector<StoreType, ProblemState>(state => state.problemReducer);
     return (
         <Conatiner>
-            <ItemContainerWithPadding horizontal={10}>No. {problemNumber + 1}</ItemContainerWithPadding>
+            <ItemContainer>No. {problemNumber + 1}</ItemContainer>
+            <ItemContainerWithPadding></ItemContainerWithPadding>
             <ItemContainer>場風： </ItemContainer>
-            <ItemContainer>
+            <ItemContainerTile>
                 <svg
                     xmlnsXlink="http://www.w3.org/1999/xlink"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox={layoutConstant.problemInfoTileViewBox}
-                    height={layoutConstant.problemInfoTileHeight}
                 >
                     <use xlinkHref="tiles.svg#tile_none" />
                     <use xlinkHref={`tiles.svg#tile${27 + roundWind}`} />
                 </svg>
-            </ItemContainer>
+            </ItemContainerTile>
             <ItemContainerWithPadding> / </ItemContainerWithPadding>
             <ItemContainer>自風： </ItemContainer>
-            <ItemContainer>
+            <ItemContainerTile>
                 <svg
                     xmlnsXlink="http://www.w3.org/1999/xlink"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox={layoutConstant.problemInfoTileViewBox}
-                    height={layoutConstant.problemInfoTileHeight}
                 >
                     <use xlinkHref="tiles.svg#tile_none" />
                     <use xlinkHref={`tiles.svg#tile${27 + seatWind}`} />
                 </svg>
-            </ItemContainer>
+            </ItemContainerTile>
             <ItemContainerWithPadding> / </ItemContainerWithPadding>
             <ItemContainer>{isBySelfDraw ? "ツモ" : "ロン"}</ItemContainer>
         </Conatiner>

@@ -1,22 +1,28 @@
 import React from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { layoutConstant } from '../common/layoutConstant';
 import { StoreType } from '../common/store';
+
+const Container = styled.figure`
+    width: 95%;
+    margin: 0;
+    box-sizing: content-box;
+    margin: 0 auto;
+`;
 
 const FigureGrid = styled.div`
     display: grid;
     justify-items: stretch;
-    grid-template-columns: ${layoutConstant.graphItemWidth}px 1fr ${layoutConstant.graphCountWidth}px;
-    padding: 5px;
-    width: ${layoutConstant.graphWidth}px;
+    grid-template-columns: 50px 1fr 50px;
+    width: 100%;
+    margin: 0 auto;
 `;
 
 const CenteredFigcaption = styled.figcaption`
     text-align: center;
 `;
 
-const ItemCell = styled.div<{ width: number, isNumeric: boolean }>`
+const ItemCell = styled.div<{ isNumeric: boolean }>`
     box-sizing: border-box;
     padding: 0 5px;
     text-align: ${props => props.isNumeric ? "right" : "center"};
@@ -37,7 +43,7 @@ const BarContainer = styled.div`
 const Bar = styled.div<{ widthRatio: number }>`
     background-color: darkgreen;
     width: ${props => props.widthRatio * 100}%;
-    height: ${layoutConstant.graphBarHeight}px;
+    height: 15px;
 `;
 
 const StatsGraph = () => {
@@ -47,14 +53,13 @@ const StatsGraph = () => {
     const maxCount = counts.reduce((acc, c) => c > acc ? c : acc, 0);
     const ratios = maxCount > 0 ? counts.map(c => c / maxCount) : counts.map(_ => 0);
     return (
-        <figure>
+        <Container>
             <CenteredFigcaption>分布</CenteredFigcaption>
             <FigureGrid>
-                {["1", "2", "3", "4", "5", "6", "不正解"].map((item, i) =>
+                {["1", "2", "3", "4", "5", "6", "NG"].map((item, i) =>
                     <React.Fragment key={`row${i}`}>
                         <ItemCell
-                            width={layoutConstant.graphItemWidth}
-                            isNumeric={item !== "不正解"}
+                            isNumeric={item !== "NG"}
                         >
                             {item}
                         </ItemCell>
@@ -66,7 +71,6 @@ const StatsGraph = () => {
                             </Bar>
                         </BarContainer>
                         <ItemCell
-                            width={layoutConstant.graphCountWidth}
                             isNumeric={true}
                         >
                             {counts[i]}
@@ -74,8 +78,7 @@ const StatsGraph = () => {
                     </React.Fragment>
                 )}
             </FigureGrid>
-        </figure>
-        
+        </Container>
     );
 };
 

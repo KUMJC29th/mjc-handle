@@ -12,29 +12,38 @@ import { OverlayAction } from "./overlayAction";
 import { OverlayBase } from "./overlayBase";
 
 const Header = styled.h1`
-    margin: 5px 0 0 10px;
+    margin: 5px 0;
     font-size: 1.5em;
     font-weight: bold;
 `;
 
-const Container = styled(OverlayBase)`
-    background-color: white;
-    width: ${layoutConstant.resultWindowWidth}px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+const HeaderContainer = styled.div`
+    text-align: center;
 `;
 
-const ItemContainer = styled.div`
+const Container = styled(OverlayBase)`
+    background-color: white;
+    width: 80%;
+    max-width: 650px;
+    margin: 0 auto;
+`;
+
+const CorrectAnswerContainer = styled.div`
     padding: 5px;
+    max-width: 600px;
+    margin: 0 auto;
 `;
 
 const CloseButtonContainer = styled.div`
     position: absolute;
     top: 7px;
     right: 10px;
+`;
+
+const GoToNextProblemButtonContainer = styled.div`
+    padding: 5px;
+    width: 100%;
+    text-align: center;
 `;
 
 const ResultWindow = () => {
@@ -49,18 +58,21 @@ const ResultWindow = () => {
     return (
         <Container>
             {gameIsDone && (answerHand.every(t => t.color === "hit") ? (
-                <Header>正解！</Header>
+                <HeaderContainer>
+                    <Header>正解！</Header>
+                </HeaderContainer>
             ) : (
                 <>
-                    <Header>不正解…</Header>
-                    <ItemContainer>
+                    <HeaderContainer>
+                        <Header>不正解…</Header>
+                    </HeaderContainer>
+                    <CorrectAnswerContainer>
                         <div>正解は</div>
                         <div>
                             <svg
                                 xmlnsXlink="http://www.w3.org/1999/xlink"
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox={layoutConstant.answerCoulumnViewBox}
-                                height={layoutConstant.resultWindowTileHeight}
                             >
                                 {problemHand.map((t, i) => 
                                     <g key={`tile_fore_${i}`}>
@@ -78,15 +90,15 @@ const ResultWindow = () => {
                                 )}
                             </svg>
                         </div>
-                    </ItemContainer>
+                    </CorrectAnswerContainer>
                 </>
             ))}
             <StatsTable />
             <StatsGraph />
             {gameIsDone &&
-                <ItemContainer>
+                <GoToNextProblemButtonContainer>
                     <GoToNextProblemButton />
-                </ItemContainer>
+                </GoToNextProblemButtonContainer>
             }
             <CloseButtonContainer>
                 <CloseButton

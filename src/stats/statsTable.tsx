@@ -11,6 +11,8 @@ const Container = styled.div`
     grid-template-rows: 40px 50px;
     padding: 5px;
     width: 60%;
+    min-width: 300px;
+    margin: 0 auto;
 `;
 
 const HeaderCell = styled.div`

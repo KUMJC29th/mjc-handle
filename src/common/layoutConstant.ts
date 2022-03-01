@@ -3,19 +3,14 @@ const tileHeight = 830;
 const tileHorizontalGap = 25;
 const tileVerticalGap = tileHorizontalGap;
 const winTileHorizontalGap = 5 * tileHorizontalGap;
-const answerColumnWidth = 800;
+const answerColumnWidth = 750;
 const answerCoulumnViewBox = `0 0 ${(tileWidth + 2 * tileHorizontalGap) * 14 + winTileHorizontalGap} ${tileHeight + 2 * tileVerticalGap}`;
 const tilePaletteTileScale = 15;
-const tilePaletteWidth = 400;
+const tilePaletteWidth = answerColumnWidth / 2;
 const tilePaletteViewBox = `0 0 ${(tileWidth + 2 * tileHorizontalGap) * 9} ${(tileHeight + 2 * tileVerticalGap) * 4}`;
 const problemInfoTileViewBox = `${-tileWidth / 2} ${-tileHeight / 2} ${tileWidth} ${tileHeight}`;
 const problemInfoTileHeight = tileHeight / tilePaletteTileScale;
-const resultWindowWidth = tileWidth / tilePaletteTileScale * 16;
-const resultWindowTileHeight = tileHeight / tilePaletteTileScale;
-const graphWidth = tileWidth / tilePaletteTileScale * 14;
-const graphItemWidth = 70;
-const graphCountWidth = 50;
-const graphBarHeight = 15;
+const widthThreshold = 799;
 
 export const layoutConstant = {
     tileWidth,
@@ -29,12 +24,7 @@ export const layoutConstant = {
     tilePaletteViewBox,
     problemInfoTileViewBox,
     problemInfoTileHeight,
-    resultWindowWidth,
-    resultWindowTileHeight,
-    graphWidth,
-    graphItemWidth,
-    graphCountWidth,
-    graphBarHeight
+    widthThreshold
 } as const;
 
 export function calcAnswerColumnTileX(index: number): number {

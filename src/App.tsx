@@ -40,17 +40,13 @@ const AnswerColumnsContainer = styled.div`
 `;
 
 const ContentButtonsContainer = styled.div`
-    padding: 5px;
     display: flex;
-    justify-content: space-around;
-    width: 50%;
+    justify-content: center;
+    padding: 5px 0 15px 0;
 `;
 
 const MainContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    
 `;
 
 const OverlayCover = styled.div`
@@ -60,7 +56,6 @@ const OverlayCover = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    /*backdrop-filter: blur(4px);*/
     ${fadeBase}
 `;
 
@@ -70,24 +65,22 @@ function App() {
 
     return (
         <>
-            <MainContainer>
-                <TitleContainer>
-                    <PageTitle>MJC Handle</PageTitle>
-                    <ShowResultsButtonContainer>
-                        <ShowResultsButton />
-                    </ShowResultsButtonContainer>
-                </TitleContainer>
-                <ProblemInfo />
-                <AnswerColumnsContainer>
-                    {enumerateRange(0, 6).map(i => 
-                        <AnswerColumn index={i} key={`column${i}`} />
-                    )}
-                </AnswerColumnsContainer>
-                <TilePalette />
-                <ContentButtonsContainer>
-                    <EnterButton />
-                </ContentButtonsContainer>
-            </MainContainer>
+            <TitleContainer>
+                <PageTitle>MJC Handle</PageTitle>
+                <ShowResultsButtonContainer>
+                    <ShowResultsButton />
+                </ShowResultsButtonContainer>
+            </TitleContainer>
+            <ProblemInfo />
+            <AnswerColumnsContainer>
+                {enumerateRange(0, 6).map(i => 
+                    <AnswerColumn index={i} key={`column${i}`} />
+                )}
+            </AnswerColumnsContainer>
+            <TilePalette />
+            <ContentButtonsContainer>
+                <EnterButton />
+            </ContentButtonsContainer>
             <CSSTransition
                 in={showsInvalidHandMessage}
                 timeout={2000}

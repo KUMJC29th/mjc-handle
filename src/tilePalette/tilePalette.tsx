@@ -17,12 +17,20 @@ const calcY = (index: number): number => {
     return (j + 0.5) * layoutConstant.tileHeight + (2 * j + 1) * layoutConstant.tileVerticalGap;
 };
 
-const TilesContainer = styled.div`
+const Container = styled.div`
     padding: 5px;
-    max-width: ${layoutConstant.tilePaletteWidth}px;
+    max-width: ${layoutConstant.answerColumnWidth}px;
+    margin: 5px auto;
 
-    @media screen and (max-width: 959px) {
-        max-width: ${layoutConstant.tilePaletteWidth * 1.5}px;
+    
+`;
+
+const InnerContainer = styled.div`
+    margin: 0 auto;
+    width: 50%;
+
+    @media screen and (max-width: ${layoutConstant.widthThreshold}px) {
+        width: 75%;
     }
 `;
 
@@ -37,10 +45,9 @@ const TilePalette = () => {
     const addAnswer = (tile: number) => () => answerDispatch({ type: "addAnswer", payload: { index, tile } });
     const removeAnswer = () => answerDispatch({ type: "removeAnswer", payload: { index } });
 
-    const isWide = useMedia({ minWidth: "960px" });
-
     return (
-        <TilesContainer>
+        <Container>
+            <InnerContainer>
             <svg
                 xmlnsXlink="http://www.w3.org/1999/xlink"
                 xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +80,8 @@ const TilePalette = () => {
                     />
                 </ClickableG>
             </svg>
-        </TilesContainer>
+            </InnerContainer>
+        </Container>
     );
 };
 
